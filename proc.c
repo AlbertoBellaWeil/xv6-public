@@ -532,3 +532,16 @@ procdump(void)
     cprintf("\n");
   }
 }
+
+int
+getprocs(void){
+        int procs = 0;
+        //getprocs here
+	struct proc *p;
+        for (p = ptable.proc; p < &ptable.proc[NPROC]; p++){
+                if (p->state != UNUSED){
+                        procs = procs + 1;
+                }
+        }
+        return procs;
+}
