@@ -532,3 +532,26 @@ procdump(void)
     cprintf("\n");
   }
 }
+
+//syscall V2P
+int
+vtp(int adress)
+{
+	//v2p(a)
+	struct proc *p;
+	int invalid = 0;
+	int pa = 0;
+	
+	for (p = ptable.proc; p < &ptable.proc[NPROC]; p++){
+		if (adress == V2P(p->pgdir)){			
+			invalid = 1;
+			pa = V2P(p->pgdir);
+		}
+	 }
+	if (invalid == 0){
+		return 0;
+	}
+	else {
+		return(pa);
+	}
+}
